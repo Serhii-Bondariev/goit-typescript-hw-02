@@ -2,18 +2,21 @@
   Створіть новий тип даних, який підходить для цих двох об'єктів.
 */
 
-type page = {
+type PageDetails = {
+  createAt: Date
+  updateAt: Date
+}
+
+
+type Page<T extends boolean> = {
   title: string
   likes: number
   accounts: string[]
   status: 'open' | 'close'
-  details: {
-    createAt: Date
-    updateAt: Date
-  }
+  details: T extends true ? PageDetails : undefined;
 }
 
-const page1 = {
+const page1: Page<true> = {
   title: 'The awesome page',
   likes: 100,
   accounts: ['Max', 'Anton', 'Nikita'],
@@ -24,11 +27,12 @@ const page1 = {
   }
 }
 
-const page2 = {
+const page2: Page<false> = {
   title: 'Python or Js',
   likes: 5,
   accounts: ['Alex'],
   status: 'close',
+  details: undefined,
 }
 
 export {};
