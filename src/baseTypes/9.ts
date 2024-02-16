@@ -13,7 +13,7 @@ type Page<T extends boolean> = {
   likes: number
   accounts: string[]
   status: 'open' | 'close'
-  details: T extends true ? PageDetails : undefined;
+  details?: PageDetails;
 }
 
 const page1: Page<true> = {
